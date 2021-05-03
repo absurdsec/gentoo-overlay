@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+
+<repositories version="1.0">
+	<repo priority="50" quality="experimental" status="unofficial">
+		<name></name>
+		<description>chatterino ebuild</description>
+		<homepage>https://github.com/gentoo/gentoo-overlay</homepage>
+		<owner>
+			<email>absurdsec@protonmail.com</email>
+		</owner>
+		<source type="git">https://github.com/gentoo/nginx-overlay.git</source>
+	</repo>
+</repositories>
