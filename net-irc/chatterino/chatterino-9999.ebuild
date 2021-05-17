@@ -32,7 +32,7 @@ RDEPEND="
 	streamlink? ( net-misc/streamlink )
 	pulseaudio? ( media-libs/pulseaudio-qt )
 	gst-plugins-good? ( media-libs/gst-plugins-good )
-	dbus ( dev-qt/qtdbus ) "
+	dev-qt/qtdbus "
 
 BDEPEND="dev-util/cmake dev-vcs/git dev-qt/qtsvg ${DEPEND}"
 DEPEND="${DEPEND}"
