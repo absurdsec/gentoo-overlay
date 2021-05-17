@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit cmake
+inherit cmake xdg-utils
 
 DESCRIPTION='Second installment of the Twitch chat client series "Chatterino"'
 HOMEPAGE="https://chatterino.com"
@@ -19,7 +19,7 @@ fi
 LICENSE="MIT"
 SLOT="0"
 
-IUSE="streamlink pulseaudio gst-plugins-good"
+IUSE="streamlink pulseaudio gst-plugins-good" # dbus" idk kev
 
 
 RDEPEND="
@@ -31,24 +31,20 @@ RDEPEND="
 	dev-libs/openssl
 	streamlink? ( net-misc/streamlink )
 	pulseaudio? ( media-libs/pulseaudio-qt )
-	gst-plugins-good? ( media-libs/gst-plugins-good )"
+	gst-plugins-good? ( media-libs/gst-plugins-good )
+	dbus ( dev-qt/qtdbus ) "
+
 BDEPEND="dev-util/cmake dev-vcs/git dev-qt/qtsvg ${DEPEND}"
 DEPEND="${DEPEND}"
 
 src_compile() {
-	cd "${WORKDIR}/chatterino-9999"
-	mkdir -p build
+	cd "${WORKDIR}/chatterino-9999" # this might fuckup
+	mkdir -p build # not sure you need to do this
 	cd build
 	cmake ..
-	if [ -z "$CCACHE_SLOPPINESS"]; then
-		CCACHE_SLOPPINESS="pch_defines,time_macros"
-		export CCACHE_SLOPPINESS
-	fi
 	emake
 }
 
 src_install() {
-	install -Dm755 "build/bin/chatterino" "${D}/usr/bin/chatterino"
-	install -Dm644 "resources/com.chatterino.chatterino.desktop" "${D}/usr/share/applications"
-	install -Dm644 "resources/icon.png" "${D}/usr/share/pixmaps/chatterino.png"
+	cmake_src_install
 }
